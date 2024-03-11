@@ -1,0 +1,54 @@
+{
+  "manifest_version": 3,
+  "name": "ProdYouTive",
+  "version": "1.0.0",
+  "description": "Manage and track your YouTube usage.",
+  "icons": {
+    "16": "client/icons/icon16.png",
+    "48": "client/icons/icon48.png",
+    "128": "client/icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "client/dist/background.bundle.js"
+  },
+  "action": {
+    "default_popup": "client/index.html"
+  },
+  "permissions": [
+    "identity", "identity.email",
+    "tabs",
+    "activeTab",
+    "storage",
+    "scripting",
+    "notifications"
+  ],
+  "host_permissions": [
+    "*://*.youtube.com/*"
+  ],
+  "oauth2": {
+    "client_id": "853389688300-pslsdqtjhdeq4bp3b121momsb2vfhaqu.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/youtube.readonly",
+      "https://www.googleapis.com/auth/youtube.force-ssl"
+    ]
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"], 
+      "js": ["client/dist/contentScript.bundle.js"],
+      "css": ["client/src/contentScript.css"],
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources": [
+    { 
+      "resources": ["client/src/components/modal/modal.css","client/src/contentScript.css", "client/icons/icon48.png"], 
+      "matches": ["<all_urls>"] 
+    }
+  ]
+}

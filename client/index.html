@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>ProdYouTive</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="popup.css" />
+    <link rel="stylesheet" href="src/components/modal/modal.css" />
+  </head>
+  <body>
+    <div id="popupContainer">
+      <div id="navContainer">
+        <img
+          src="icons/icon128.png"
+          alt="Logo"
+          id="logo"
+          height="35"
+          width="35"
+        />
+        <h1>ProdYouTive</h1>
+        <button class="backToHomeBtn active">
+          <i class="fas fa-home"></i>
+        </button>
+        <button id="insightsBtn">
+          <i class="fas fa-chart-line"></i>
+        </button>
+        <button id="focusModeSettingsPageBtn">
+          <i class="fas fa-bullseye"></i>
+        </button>
+        <button id="settingsBtn"><i class="fas fa-cog"></i></button>
+        <button id="closeBtn">X</button>
+      </div>
+      <!-- Error display section -->
+      <div id="errorDisplaySection" style="display: none">
+        <img
+          id="errorImage"
+          src=""
+          alt="Error Image"
+          style="width: 250px; height: 250px"
+        />
+        <p id="errorMessage">
+          <!-- Error message will be inserted here -->
+        </p>
+        <button id="retryButton">
+          Retry <i id="retryIcon" class="fa-solid fa-repeat"></i>
+        </button>
+      </div>
+      <!-- Sign In Message section -->
+      <div class="signInMessage">
+        <div id="signInIconContainer">
+          <img
+            id="signInIcon"
+            src="src/components/icons/account.svg"
+            alt="Sign In Icon"
+          />
+          <div class="overlayContent">
+            <div class="insideOverlayContent">
+              <h2>Please Sign In</h2>
+              <p id="signInNote">
+                For ProdYouTive to work effectively, signing in with your Google
+                account is required.
+              </p>
+              <button id="loginBtn" class="signInBtn">
+                <i class="fab fa-google fa-2x"></i> Sign In with Google
+              </button>
+              <p class="privacyNote">
+                Note: We respect your privacy and security. Your data is handled
+                securely and in accordance with Google's privacy policies.
+                <a href="https://your-privacy-policy-url.com" target="_blank"
+                  >Read our Privacy Policy</a
+                >.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Loading Screen -->
+      <div id="loadingScreen" class="loading-screen">
+        <div class="spinner"></div>
+      </div>
+      <!-- Page Content -->
+      <div id="content">
+        <div id="homeContainer">
+          <div id="homeContent" style="display: none">
+            <div id="nowPlayingSection">
+              <h2>Now Playing:</h2>
+              <div id="nowPlayingDetails">
+                <div id="videoInfo">
+                  <h4 id="videoTitle">No video currently playing</h4>
+                  <p id="videoChannel">Channel name here</p>
+                </div>
+                <div id="videoControls">
+                  <!-- Label for categorization -->
+                  <p class="videoPurposeLabel">
+                    What purpose are you watching this video for?
+                  </p>
+                  <span
+                    class="tooltip-icon"
+                    data-tooltip="This will improve the algorithm to determine productivity score of a video."
+                    >?</span
+                  >
+                  <!-- Category Buttons -->
+                  <button class="categoryBtn" data-category="Work">Work</button>
+                  <button class="categoryBtn" data-category="Study">
+                    Study
+                  </button>
+                  <button class="categoryBtn" data-category="Leisure">
+                    Leisure
+                  </button>
+                  <!-- More buttons can be added as needed -->
+                </div>
+              </div>
+            </div>
+            <div id="productivityScoreSection">
+              <div id="todayTotalSection">
+                <h2 id="todayTotalDisplay">
+                  You spent 0 hours and 0 minutes on YouTube today
+                </h2>
+              </div>
+              <h2>
+                Your Productivity Score:
+                <span
+                  class="tooltip-icon"
+                  data-tooltip="This score represents your YouTube usage balance. Higher scores indicate more productive usage."
+                  >?</span
+                >
+              </h2>
+              <div id="productivityScoreDisplay">No Score Determined</div>
+              <div class="detailsButtonContainer">
+                <button class="detailsButton">More Details</button>
+              </div>
+            </div>
+            <div id="productivityTipsSection">
+              <h2>
+                Productivity Improvement Tips:
+                <span
+                  class="tooltip-icon"
+                  data-tooltip="These tips are designed to help you improve your YouTube usage habits."
+                  >?</span
+                >
+              </h2>
+              <ul id="productivityTips">
+                <!-- Tips will be dynamically inserted here -->
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div id="insightsContainer" style="display: none">
+          <h1>
+            Your Insights
+            <span class="tooltip-icon" data-tooltip="Insights Tooltip">?</span>
+          </h1>
+          <div class="signInMessage" style="display: none">
+            <h2>Please sign in to see insights</h2>
+          </div>
+          <div id="insightsContent" style="display: none">
+            <div class="chart-container">
+              <h2>
+                YouTube Usage Summary
+                <span class="tooltip-icon" data-tooltip="Insights Tooltip"
+                  >?</span
+                >
+              </h2>
+              <table id="youtubeUsageTable" border="1">
+                <thead>
+                  <tr>
+                    <th>Period</th>
+                    <th># of Videos</th>
+                    <th>Watch Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Today</td>
+                    <td id="videosToday">...</td>
+                    <td id="watchTimeToday">...</td>
+                  </tr>
+                  <tr>
+                    <td>Yesterday</td>
+                    <td id="videosYesterday">...</td>
+                    <td id="watchTimeYesterday">...</td>
+                  </tr>
+                  <tr>
+                    <td>This Week</td>
+                    <td id="videosThisWeek">...</td>
+                    <td id="watchTimeThisWeek">...</td>
+                  </tr>
+                  <tr>
+                    <td>This Month</td>
+                    <td id="videosThisMonth">...</td>
+                    <td id="watchTimeThisMonth">...</td>
+                  </tr>
+                  <tr>
+                    <td>Total</td>
+                    <td id="videosTotal">...</td>
+                    <td id="watchTimeTotal">...</td>
+                  </tr>
+                  <!-- Repeat for other periods -->
+                </tbody>
+              </table>
+            </div>
+            <div class="chart-container">
+              <h2>
+                Weekly Usage
+                <span class="tooltip-icon" data-tooltip="Insights Tooltip"
+                  >?</span
+                >
+              </h2>
+              <canvas id="weeklyUsageChart"></canvas>
+            </div>
+            <h2>Activity Trends</h2>
+            <div class="chart-container">
+              <h2>
+                Top 10 Channels
+                <span class="tooltip-icon" data-tooltip="Insights Tooltip"
+                  >?</span
+                >
+              </h2>
+              <canvas id="trendsPieChart"></canvas>
+            </div>
+            <div class="chart-container">
+              <h2>
+                Most Watched Categories
+                <span class="tooltip-icon" data-tooltip="Insights Tooltip"
+                  >?</span
+                >
+              </h2>
+              <canvas id="trendsCategoryChart"></canvas>
+            </div>
+          </div>
+        </div>
+        <div id="focusModeSettingsPageContainer" style="display: none">
+          <div class="signInMessage" style="display: none">
+            <h2>Please sign in</h2>
+          </div>
+          <div id="focusModeSettingsPageContent">
+            <h1>
+              Focus Mode Settings
+              <span class="tooltip-icon" data-tooltip="Insights Tooltip"
+                >?</span
+              >
+            </h1>
+            <p>Add custom words to filter content you watch:</p>
+
+            <div id="disableFilterContainer" class="filterContainer">
+              <label for="disableFilterInput">Block keywords:</label>
+              <input
+                type="text"
+                id="disableFilterInput"
+                class="filterInput"
+                placeholder="Enter filter keyword/tag"
+              />
+              <button id="disableAddFilterBtn" class="addKeywordBtn">
+                Add
+              </button>
+              <div class="tagListContainer">
+                <ul id="disableTagList"></ul>
+              </div>
+            </div>
+
+            <div id="enableFilterContainer" class="filterContainer">
+              <label for="enableFilterInput">Allow keywords:</label>
+              <input
+                type="text"
+                id="enableFilterInput"
+                class="filterInput"
+                placeholder="Enter filter keyword/tag"
+              />
+              <button id="enableAddFilterBtn" class="addKeywordBtn">Add</button>
+              <div class="tagListContainer">
+                <ul id="enableTagList"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="settingsContainer" style="display: none">
+          <h1>Settings</h1>
+          <button class="backToHomeBtn">Back</button>
+          <button id="clearStorageBtn">Clear All Data</button>
+        </div>
+      </div>
+      <div id="navContainerBottom">
+        <div id="focusModeToggleSwitchContainer" style="display: none">
+          <label id="labelForFocusModeToggle" for="toggleSwitch"
+            >Focus Mode: Off</label
+          >
+          <label id="focusModeToggle" class="switch">
+            <input type="checkbox" id="toggleSwitch" />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <button id="switchAccountBtn" style="display: none">
+          Switch Account
+        </button>
+      </div>
+    </div>
+    <script src="dist/popup.bundle.js"></script>
+  </body>
+</html>
