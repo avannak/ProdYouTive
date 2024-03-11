@@ -1,0 +1,11 @@
+.blur-video {
+  filter: blur(30px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.initial-blur {
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
+}

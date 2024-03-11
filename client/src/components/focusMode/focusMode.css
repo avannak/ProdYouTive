@@ -1,0 +1,7 @@
+.hide-video {
+  display: none;
+}
+
+.blur-video {
+  filter: blur(8px);
+}
