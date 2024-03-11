@@ -318,10 +318,6 @@ function handleAction(action, request, tabId, sendResponse) {
           if (tabId === newTab.id && info.status === "complete") {
             // Stop listening to updates on this tab
             chrome.tabs.onUpdated.removeListener(onUpdated);
-
-            // Inject your content script here if it's not automatically injected
-            // chrome.tabs.executeScript(newTab.id, { file: "contentScript.js" });
-
             // Then send a message to the content script in the new tab
             chrome.tabs.sendMessage(newTab.id, {
               action: "openFocusModeModal",
@@ -1648,7 +1644,6 @@ function isValidWatchData(data) {
     typeof data.daily === "object" &&
     data.monthly &&
     typeof data.monthly === "object"
-    // Add other necessary checks based on your data structure
   );
 }
 
