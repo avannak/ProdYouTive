@@ -21,7 +21,8 @@ ProdYouTive is a Chrome extension designed to transform your YouTube usage into 
 3. Enable Developer Mode.
 4. Click "Load unpacked" and select the cloned directory.
 5. Connect With Your Google Account.
-   ![prodyoutive_login](https://github.com/avannak/ProdYouTive/assets/53500721/929d030b-c014-445f-9b3e-8f0a2d847312)
+   
+   <img src="https://github.com/avannak/ProdYouTive/assets/53500721/929d030b-c014-445f-9b3e-8f0a2d847312" width="200"/>
 7. Start enhancing your YouTube experience!
 
 ## Built With
