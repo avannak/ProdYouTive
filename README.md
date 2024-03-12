@@ -38,4 +38,6 @@ ProdYouTive is a Chrome extension designed to transform your YouTube usage into 
 
 ## Acknowledgements
 - **Chart.js**: For the fantastic charting library that powers our analytics.
-- Disclaimer: ProdYouTive is a conceptual Chrome extension created for demonstration purposes only. It is not intended for commercial use or distribution, as it may not fully comply with YouTube's API developer policies. This project serves as a showcase of my coding abilities and understanding of Chrome extension development.
+  
+## Disclaimer
+ProdYouTive is a conceptual Chrome extension created for demonstration purposes only. It is not intended for commercial use or distribution, as it may not fully comply with YouTube's API developer policies. This project serves as a showcase of my coding abilities and understanding of Chrome extension development.
