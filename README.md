@@ -5,6 +5,7 @@ ProdYouTive is a Chrome extension designed to transform your YouTube usage into 
 
 ## Features
 - **Insights**: Understand your YouTube habits with detailed statistics, such as total time spent, average daily usage, and viewing trends.
+  
   <img src="https://github.com/avannak/ProdYouTive/assets/53500721/9b9435fe-8a3e-44c3-b348-0ae5badcc503" width="200"/>
   <img src="https://github.com/avannak/ProdYouTive/assets/53500721/dc586e35-ebe7-4ca0-a2ed-a6a90754360a" width="200"/>
   <img src="https://github.com/avannak/ProdYouTive/assets/53500721/0545e0f4-b1db-435c-bd8b-1e127a18cf95" width="200"/>
@@ -12,7 +13,9 @@ ProdYouTive is a Chrome extension designed to transform your YouTube usage into 
 
 
 - **Focus Mode**: Enter a clutter-free zone that emphasizes productivity by highlighting useful content and concealing distractions.
+  
   ![focus](https://github.com/avannak/ProdYouTive/assets/53500721/140ee395-a3a2-4d16-a753-94db5ae58eed)
+  
 - **Customizable Settings**: Tailor ProdYouTive to your needs with adjustable timers, notifications, and more.
 
 ## Getting Started
@@ -23,6 +26,7 @@ ProdYouTive is a Chrome extension designed to transform your YouTube usage into 
 5. Connect With Your Google Account.
    
    <img src="https://github.com/avannak/ProdYouTive/assets/53500721/929d030b-c014-445f-9b3e-8f0a2d847312" width="200"/>
+   
 7. Start enhancing your YouTube experience!
 
 ## Built With
