@@ -19,7 +19,7 @@ ProdYouTive is a Chrome extension designed to transform your YouTube usage into 
   
 - **Customizable Settings**: Tailor ProdYouTive to your needs with adjustable timers, notifications, and more.
 
-## Getting Started
+## Getting Started (Note: Requires Server and Google & Youtube API key to work)
 1. Clone the repository to your local machine.
 2. Open Chrome and navigate to `chrome://extensions/`.
 3. Enable Developer Mode.
