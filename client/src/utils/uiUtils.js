@@ -92,7 +92,7 @@ export function showLoginButton() {
 export function showSignOutButton() {
   // Show the sign-out button and hide the login button
   document.getElementById("loginBtn").style.display = "none";
-  document.getElementById("switchAccountBtn").style.display = "block";
+  document.getElementById("switchAccountBtn").style.display = "flex";
 }
 
 // Updates user profile information

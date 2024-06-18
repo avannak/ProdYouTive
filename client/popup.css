@@ -487,13 +487,15 @@ input:checked + .slider:before {
   cursor: pointer;
   color: #ffffff;
   background-color: rgb(34, 39, 30);
-  border: 1px solid grey;
+  border: 2px solid grey;
   border-radius: 50%;
-  width: 10px;
-  height: 10px;
-  padding: 2px;
+  width: 15px;
+  height: 15px;
+  min-width: 15px;
+  min-height: 15px;
   font-size: 12px;
   text-align: center;
+  align-items: center;
   margin: 5px;
 }
 
@@ -502,7 +504,7 @@ input:checked + .slider:before {
   position: absolute;
   padding: 5px;
   background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  border: 5px solid #ddd;
   z-index: 1000;
   white-space: wrap;
   font-size: 12px;
@@ -633,8 +635,76 @@ input:checked + .slider:before {
   background-color: #171717;
 }
 
+/* Settings Page */
 #settingsContainer {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: auto;
+  display: none;
+}
+
+#settingsContainer h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 58px;
+  height: 72px;
   text-align: center;
+}
+
+#settingsContainer button:not(#clearStorageBtn) {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4869fc;
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+#settingsContainer button:not(#clearStorageBtn):hover {
+  background-color: #4565f3;
+}
+
+#clearStorageBtn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff0000;
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+#clearStorageBtn:hover {
+  background-color: #cc0000;
+}
+
+/* Sign Out Button */
+#switchAccountBtn {
+  color: white;
+  padding: 10px 35px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#switchAccountBtn:hover {
+  background-color: #45a049;
 }
 
 /* Chart Styles */
