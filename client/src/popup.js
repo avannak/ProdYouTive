@@ -655,21 +655,16 @@ export function loadInsightsPage() {
   fetchCategoryDataAndDrawCategoryTrendsPieChart();
 }
 
-export function updateInsightsPage(data) {
+export function updateInsightsPage() {
   const insightsContent = document.getElementById("insightsContent");
 
-  if (data && Object.keys(data).length > 0) {
-    // User is signed in
-    insightsContent.style.display = "block";
-    // Fetch and display insights data
-    fetchAndDisplayAllTimes();
-    fetchWeekDataAndDrawChart();
-    fetchChannelDataAndDrawTopTenChannelsPieChart();
-    fetchCategoryDataAndDrawCategoryTrendsPieChart();
-  } else {
-    // Data is not available
-    insightsContent.style.display = "none";
-  }
+  // User is signed in
+  insightsContent.style.display = "block";
+  // Fetch and display insights data
+  fetchAndDisplayAllTimes();
+  fetchWeekDataAndDrawChart();
+  fetchChannelDataAndDrawTopTenChannelsPieChart();
+  fetchCategoryDataAndDrawCategoryTrendsPieChart();
 }
 
 // Function to load Focus Mode settings page into popup
@@ -1055,15 +1050,63 @@ function requestWatchDataFromBackground() {
   chrome.runtime.sendMessage({ action: "fetchWatchData" }, (response) => {
     hideLoadingScreen();
     if (response.success) {
-      console.log("Data successfully fetched.");
-      handleContentVisibility(true); // Indicate successful data fetch
-      loadHomePageWithData(response.data); // Reload page content with new data
+      if (response.data && Object.keys(response.data).length > 0) {
+        console.log("Data successfully fetched.");
+        handleContentVisibility(true);
+        loadHomePageWithData(response.data);
+      } else {
+        console.log("No watch data available, initializing default data.");
+        initializeDefaultData();
+        handleContentVisibility(true);
+      }
     } else {
-      console.log("Data fetch failed:", response.message);
-      showErrorPage(response.message);
-      handleContentVisibility(false); // Indicate data fetch failure
+      if (response.message === "No watch data available") {
+        // Specific check for no data scenario
+        initializeDefaultData();
+        handleContentVisibility(true);
+      } else {
+        // Actual error in fetching data
+        console.error("Data fetch failed:", response.message);
+        showErrorPage(response.message);
+        handleContentVisibility(false);
+      }
     }
   });
+}
+
+function initializeDefaultData() {
+  const defaultData = {
+    total: { time: 0, videos: 0 },
+    daily: {
+      monday: { time: 0, videos: 0 },
+      tuesday: { time: 0, videos: 0 },
+      wednesday: { time: 0, videos: 0 },
+      thursday: { time: 0, videos: 0 },
+      friday: { time: 0, videos: 0 },
+      saturday: { time: 0, videos: 0 },
+      sunday: { time: 0, videos: 0 },
+    },
+    monthly: {
+      january: { time: 0, videos: 0 },
+      february: { time: 0, videos: 0 },
+      march: { time: 0, videos: 0 },
+      april: { time: 0, videos: 0 },
+      may: { time: 0, videos: 0 },
+      june: { time: 0, videos: 0 },
+      july: { time: 0, videos: 0 },
+      august: { time: 0, videos: 0 },
+      september: { time: 0, videos: 0 },
+      november: { time: 0, videos: 0 },
+      december: { time: 0, videos: 0 },
+    },
+    categories: {},
+    channels: {},
+    countedVideos: new Set(), // Initialize as a Set
+    lastUpdated: new Date().toISOString(),
+  };
+
+  // Load or render the page with the default data
+  loadHomePageWithData(defaultData);
 }
 
 // Handle content visibility based on user sign-in status
@@ -1122,5 +1165,8 @@ function loadHomePageWithData(data) {
   console.log("Reloading page content with new data:", data);
   // Update necessary elements in the DOM with the new data
   // ...
-  updateInsightsPage(data);
+  updateInsightsPage();
+
+  hideErrorPage();
+  loadHomePage();
 }

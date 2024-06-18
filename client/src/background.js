@@ -1556,6 +1556,12 @@ export async function getWatchDataFromServer() {
     const url = `http://localhost:3000/get-watch-data/${userId}`;
     const response = await fetch(url);
 
+    // If server returns a 404 status, treat it as no data rather than an error
+    if (response.status === 404) {
+      console.log("No watch data found for user. Initializing default data.");
+      return getDefaultWatchData();
+    }
+
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -1580,15 +1586,8 @@ export async function getWatchDataFromServer() {
       message: "Failed to fetch data from the server. Please try again later.",
     });
 
-    // Only return default data if user is logged in but there's an error fetching server data
-    if (
-      error.message === "User not logged in" ||
-      error.message === "No user ID found"
-    ) {
-      return null;
-    } else {
-      return getDefaultWatchData();
-    }
+    // Return default data if there's an error other than login or user ID issues
+    return getDefaultWatchData();
   }
 }
 
@@ -1609,8 +1608,20 @@ export async function getWatchDataFromServerWithResponse() {
     const url = `http://localhost:3000/get-watch-data/${userId}`;
     const response = await fetch(url);
 
+    // If server returns a 404 status, treat it as no data rather than an error
+    if (response.status === 404) {
+      console.log("No watch data found for user. Initializing default data.");
+      return { success: true, data: getDefaultWatchData() };
+    }
+
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      // If server returns a non-2xx and non-404 status, we consider it a fetch error
+      console.warn(`HTTP error! Status: ${response.status}`);
+      return {
+        success: false,
+        message:
+          "Failed to fetch data from the server. Please try again later.",
+      };
     }
 
     const serverData = await response.json();
@@ -1621,9 +1632,9 @@ export async function getWatchDataFromServerWithResponse() {
 
     if (!isValidWatchData(serverData)) {
       console.log(
-        "Server data is invalid. Initializing with default empty data."
+        "Server data is empty or invalid. Initializing with default empty data."
       );
-      return getDefaultWatchData();
+      return { success: true, data: getDefaultWatchData() };
     }
 
     console.log("Using server data.");
